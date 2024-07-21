@@ -6,8 +6,7 @@ import (
 	"path/filepath"
 )
 
-func which(fileName string) []string {
-	var result []string
+func which(fileName string) *string {
 	path := os.Getenv("PATH")
 	pathSplit := filepath.SplitList(path)
 	for _, dir := range pathSplit {
@@ -23,10 +22,10 @@ func which(fileName string) []string {
 		}
 
 		if mode&0111 != 0 {
-			result = append(result, fullPath)
+			return &fullPath
 		}
 	}
-	return result
+	return nil
 }
 
 func main() {
@@ -39,10 +38,8 @@ func main() {
 	}
 
 	res := which(file)
-	if len(res) > 0 {
-		for _, path := range res {
-			fmt.Println(path)
-		}
+	if res != nil {
+		fmt.Println(*res)
 	} else {
 		fmt.Println("Not found")
 	}
