@@ -30,15 +30,6 @@ func which(fileName string) []string {
 	return result
 }
 
-func execute(command string) {
-	cmd := exec.Command(command, "./")
-	out, err := cmd.Output()
-	if err != nil {
-		fmt.Println("could not run command: ", err)
-	}
-	fmt.Println("Output: ", string(out))
-}
-
 func main() {
 	var file string
 	args := os.Args
