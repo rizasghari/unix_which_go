@@ -43,7 +43,6 @@ func main() {
 	if len(res) > 0 {
 		for _, path := range res {
 			fmt.Println(path)
-			execute(file)
 		}
 	} else {
 		fmt.Println("Not found")
